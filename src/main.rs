@@ -9,12 +9,15 @@ let (A4 , As4 , B4 , C5 ,Cs5 , D5 , Ds5, E5 ,F5 , Fs5 , G5 , Gs5 ,A5)
      622.254, 659.255,   698.456,  739.989, 783.991, 830.609, 880.000);
 
      let spec = hound::WavSpec {
+    channels: 1,
     channels: 2,
     sample_rate: 44100,
     bits_per_sample: 16,
     sample_format: hound::SampleFormat::Int,
     };
      let mut writer = hound::WavWriter::create("sine.wav",spec).unwrap();
+         writer.write_sample(0).unwrap();
+          writer.finalize().unwrap();
         writer.write_sample(0).expect("can't write once");   //Its channels is two (= stereo) so  
          writer.write_sample(0).expect("can't write twice"); //have to write twice
          writer.finalize().expect("can't finalize.");
@@ -32,6 +35,13 @@ let (A4 , As4 , B4 , C5 ,Cs5 , D5 , Ds5, E5 ,F5 , Fs5 , G5 , Gs5 ,A5)
          writer.finalize().unwrap();
      }
 
+     onkai(C5,30);
+     onkai(C5,30);
+     onkai(G5,30);
+     onkai(G5,30);
+     onkai(A5,30);
+     onkai(A5,30);
+     onkai(G5,30);
      onkai(C5,100);
      onkai(C5,100);
      onkai(G5,100);
@@ -70,5 +80,3 @@ let (A4 , As4 , B4 , C5 ,Cs5 , D5 , Ds5, E5 ,F5 , Fs5 , G5 , Gs5 ,A5)
      }
 
      writer.finalize().unwrap();
-}
-
